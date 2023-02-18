@@ -1,0 +1,11 @@
+<h1>日報詳細画面</h1>
+<p>現場名: <%= @daily_report.place %></p>
+<p>日付: <%= @daily_report.date %></p>
+<p>住所: <%= @daily_report.address %></p>
+<% @daily_report.labels.each do |label| %>
+    <p>ラベル: <%= label.name %></p>
+<% end %>
+<p>作業内容: <%= @daily_report.action_content %></p>
+<p>使用工具: <%= @daily_report.tool %></p>
+<%= link_to "日報一覧に戻る",daily_reports_path %>
+<p><%= link_to "編集", edit_daily_report_path(@daily_report.id) %></p>
