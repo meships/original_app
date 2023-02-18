@@ -9,3 +9,37 @@
 <p>使用工具: <%= @daily_report.tool %></p>
 <%= link_to "日報一覧に戻る",daily_reports_path %>
 <p><%= link_to "編集", edit_daily_report_path(@daily_report.id) %></p>
+
+
+<!-- ここから地図関係 -->
+<h3>マップ</h3>
+
+<div id="map"></div>
+<!-- ↑これが無いとマップが表示されない -->
+
+<style>
+#map {
+height: 600px;
+width: 600px;
+}
+</style>
+
+<!-- js部分 -->
+<script>
+
+  function initMap(){
+    const myPlace = { lat: <%= @daily_report.latitude %>, lng: <%= @daily_report.longitude %> }
+    let map = new google.maps.Map(document.getElementById('map'), {
+      center: myPlace,
+      zoom: 8
+    });
+
+    new google.maps.Marker({
+      position: myPlace,
+      map
+    });
+  }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSSKQ2eh963Pus8S6M4z3wwTlL84q2WMQ&callback=initMap" async defer></script>
+<!-- ここまで -->
