@@ -1,2 +1,24 @@
-<h1>DailyReports#index</h1>
-<p>Find me in app/views/daily_reports/index.html.erb</p>
+<h1>日報一覧</h1>
+<%= link_to "新しい日報を作る", new_daily_report_path %>
+
+<table class="table">
+    <tr>
+      <th>現場名</th>
+      <th>日付</th>
+      <th>住所</th>
+    </tr>
+
+  <% @daily_reports.each do |daily_report| %>
+        <tr>
+        <td><%= daily_report.place %></td>
+        <td><%= daily_report.date %></td>
+        <td><%= daily_report.address %></td>
+        <td>
+            <% daily_report.labels.each do |label| %>
+            <%= label.name %>
+            <% end %>
+        </td>
+        <td><%= link_to "日報を見る", daily_report_path(daily_report.id) %></td>
+        <td><%= link_to "削除", daily_report_path(daily_report.id),method: :delete,data: { confirm: "本当に削除してもいいですか？"} %></td>
+        </tr> 
+  <% end %>
