@@ -3,5 +3,5 @@ class Labelling < ApplicationRecord
   belongs_to :label
 
   #修正案
-  has_many :daily_reports, through: :labellings
+  #has_many :daily_reports, through: :labellings
 end
