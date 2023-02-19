@@ -1,6 +1,4 @@
-class DailyReport < ApplicationRecord
-    belongs_to :user
-
+class Label < ApplicationRecord
     has_many :labellings, dependent: :destroy
     has_many :labels, through: :labellings
 end

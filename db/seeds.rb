@@ -13,15 +13,15 @@ User.create!(name: '管理者',
     password_confirmation: 'admin@example.jp',
     admin: true)
 
-# labels = [
-#     {id: 1, name: "陸上"},
-#     {id: 2, name: "水上"},
-#     {id: 3, name: "水中"},
+labels = [
+    {id: 1, name: "陸上"},
+    {id: 2, name: "水上"},
+    {id: 3, name: "水中"},
 
-# ]
-# labels.each do |label|
-#     Label.find_or_create_by(label)
-# end
+]
+labels.each do |label|
+    Label.find_or_create_by(label)
+end
 
 
 
