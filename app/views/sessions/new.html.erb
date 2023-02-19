@@ -1,11 +1,12 @@
-<h1>Log in</h1>
+<h1>D.A.R.T</h1>
+<h3>簡単日報作成アプリ</h3>
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-
-  <%= f.label :email %>
+  <h1>ログイン</h1>
+  <%= f.label :メールアドレス %>
   <%= f.email_field :email %>
 
-  <%= f.label :password %>
+  <p><%= f.label :パスワード %>
   <%= f.password_field :password %>
 
-  <%= f.submit "Log in" %>
+  <p><%= f.submit "ログイン" %>
 <% end %>

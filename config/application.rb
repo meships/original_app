@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Dart01
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.time_zone = 'Tokyo'
     config.load_defaults 6.1
 
     # Configuration for the application, engines, and railties goes here.
