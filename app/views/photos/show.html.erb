@@ -13,3 +13,25 @@
   <% end %>
 </div>
 <% end %>
+
+
+
+
+
+
+
+
+<p>コメント一覧</p>
+
+<!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+<div id="photo_comments_area">
+  <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+  <%= render partial: 'photo_comments/index', locals: { photo_comments: @photo_comments, photo: @photo } %>
+</div>
+
+<!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+
+<%= render partial: 'photo_comments/form', locals: { daily_report: @daily_report, photo_comment: @photo_comment, photo: @photo } %>
+
+<%= link_to '編集', edit_daily_report_photo_path(@photo) %> |
+<%= link_to '戻る', daily_report_photos_path %>

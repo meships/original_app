@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+
   root "daily_reports#index"
 
-  #日報
+  #日報 写真 コメント
   resources :daily_reports do
     resources :photos do
       resources :photo_comments
-    end    
+    end   
   end
 
   #ログイン

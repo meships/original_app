@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_19_063012) do
+ActiveRecord::Schema.define(version: 2023_02_19_104049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 2023_02_19_063012) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "photo_comments", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "photo_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["photo_id"], name: "index_photo_comments_on_photo_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.text "title"
     t.bigint "daily_report_id", null: false
@@ -95,5 +103,6 @@ ActiveRecord::Schema.define(version: 2023_02_19_063012) do
   add_foreign_key "daily_reports", "users"
   add_foreign_key "labellings", "daily_reports"
   add_foreign_key "labellings", "labels"
+  add_foreign_key "photo_comments", "photos"
   add_foreign_key "photos", "daily_reports"
 end
