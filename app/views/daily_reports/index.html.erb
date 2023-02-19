@@ -6,19 +6,42 @@
       <th>現場名</th>
       <th>日付</th>
       <th>住所</th>
+      <th>ラベル</th>
+      <th>操作</th>
     </tr>
 
   <% @daily_reports.each do |daily_report| %>
-        <tr>
-        <td><%= daily_report.place %></td>
-        <td><%= daily_report.date %></td>
-        <td><%= daily_report.address %></td>
-        <td>
-            <% daily_report.labels.each do |label| %>
-            <%= label.name %>
-            <% end %>
-        </td>
-        <td><%= link_to "日報を見る", daily_report_path(daily_report.id) %></td>
-        <td><%= link_to "削除", daily_report_path(daily_report.id),method: :delete,data: { confirm: "本当に削除してもいいですか？"} %></td>
-        </tr> 
+    <tr>
+      <td><%= daily_report.place %></td>
+      <td><%= daily_report.date %></td>
+      <td><%= daily_report.address %></td>
+      <td>
+        <% daily_report.labels.each do |label| %>
+          <%= label.name %>
+        <% end %>
+      </td>
+
+
+      <td><%= link_to "日報を見る", daily_report_path(daily_report.id) %></td>
+      <td><%= link_to "削除", daily_report_path(daily_report.id),method: :delete,data: { confirm: "本当に削除してもいいですか？"} %></td>
+
+    </tr>
+    
   <% end %>
+
+  <!-- 日報受け渡し -->
+  <% @delivered_reports.each do |daily_report| %>
+    <tr>
+      <td><%= daily_report.place %></td>
+      <td><%= daily_report.date %></td>
+      <td><%= daily_report.address %></td>
+      <td>
+        <% daily_report.labels.each do |label| %>
+          <%= label.name %>
+        <% end %>
+      </td>
+      <td><%= link_to "日報を見る", daily_report_path(daily_report.id) %></td>
+      <td></td>
+    </tr>
+  <% end %>
+</table>
