@@ -2,6 +2,8 @@ class DailyReportsController < ApplicationController
   before_action :login_required
   def index
     @daily_reports = current_user.daily_reports
+     # 渡された日報を取得し、@daily_reportsに追加する
+    @delivered_reports = current_user.report_deliveries.map(&:daily_report)
   end
 
   def new
@@ -22,6 +24,18 @@ class DailyReportsController < ApplicationController
 
   def show
     @daily_report = DailyReport.find(params[:id])
+    #日報閲覧許可
+    @users = User.all
+    # @report_delivery = ReportDelivery.new
+    # @report_delivery = ReportDelivery.find(params[:id])
+    # @daily_report = @report_delivery.daily_report
+
+    if params[:report_delivery_id].present?
+      @report_delivery = ReportDelivery.find(params[:report_delivery_id])
+      @daily_report = @report_delivery.daily_report
+    else
+      @report_delivery = ReportDelivery.new
+    end
   end
 
   def edit
