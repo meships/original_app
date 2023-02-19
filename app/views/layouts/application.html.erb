@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dart01</title>
+    <title>Laboratory</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -18,9 +18,16 @@
     <% if logged_in? %>
       <%= link_to "Profile", user_path(current_user.id) %>
       <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+
+
+      <%= link_to "管理者画面",admin_users_path,class:"login" if admin? %>
     <% else %>
       <%= link_to "Sign up", new_user_path %>
       <%= link_to "Login", new_session_path %>
+
+
+      <%= link_to 'ゲストログイン', login_guest_login_path(guest_login: true), method: :post %>
+      <%= link_to "管理者ゲストログイン", admin_guest_login_path, method: :post %>
     <% end %>
 
     <%= yield %>
