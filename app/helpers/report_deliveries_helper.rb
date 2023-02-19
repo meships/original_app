@@ -1,0 +1,2 @@
+module ReportDeliveriesHelper
+end
