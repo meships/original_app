@@ -1,0 +1,42 @@
+<%= form_with(model: [@daily_report, @photo]) do |form| %>
+    <% if @photo.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+        <ul>
+          <% photo.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+  
+
+    <div class="field">
+      <%= form.label :images %>
+      <%= form.file_field :images, multiple: true %>
+    </div>
+
+    <% if @photo.images.attached? %>
+        <p>選択済みの画像（削除する画像にチェックをつけてください）</p>
+        <div style="display: flex; flex-wrap: wrap; width: 750px;">
+        <% @photo.images.each do |image| %>
+        <div style="display: flex; margin:5px 5px 5px 0;">
+            <%= form.check_box :image_ids, { multiple: true }, image.id, false %>
+            <label for="photo_image_ids_<%= image.id %>" > 
+            <%= image_tag image, size: '300x200' %>
+            </label>
+        </div>
+        <% end %>
+        </div>
+    <% end %>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
