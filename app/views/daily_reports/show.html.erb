@@ -43,3 +43,6 @@ width: 600px;
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSSKQ2eh963Pus8S6M4z3wwTlL84q2WMQ&callback=initMap" async defer></script>
 <!-- ここまで -->
+<%= link_to  "新規写真", new_daily_report_photo_path(@daily_report.id) %>
+<%= link_to 'Photos', daily_report_photos_path(@daily_report, @photos) %>
+<%#= link_to 'Photo', daily_report_photo_path(@daily_report, @photo) %>

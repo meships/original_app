@@ -1,0 +1,15 @@
+<p>
+  <strong>Name:</strong>
+  <%= @photo.title %>
+</p>
+
+<% if @photo.images.attached? %>
+<div style="width: 700px;">
+  <p><strong>Image:</strong></p>
+  <% @photo.images.each do |image| %>
+    <a href="<%= url_for(image) %>">
+      <%= image_tag image, size: '300x200' %>
+    </a> 
+  <% end %>
+</div>
+<% end %>
