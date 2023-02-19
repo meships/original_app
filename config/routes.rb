@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  get 'photo_comments/show'
-  get 'photo_comments/edit'
+  
   root "daily_reports#index"
 
   #日報
   resources :daily_reports do
     resources :photos do
       resources :photo_comments
-    end    
+    end   
   end
 
   #ログイン
