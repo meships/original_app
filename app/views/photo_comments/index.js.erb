@@ -1,0 +1,3 @@
+$("#photo_comments_area").html("<%= j(render 'photo_comments/index', {daily_report: @photo_comment.photo.daily_report, photo_comments: @photo_comment.photo.photo_comments, photo: @photo_comment.photo }) %>");
+$("textarea").val('');
+$("#notice").html("<%= j flash[:notice] %>");
