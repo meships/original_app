@@ -1,5 +1,11 @@
 class User < ApplicationRecord
+    before_destroy :admin_not_delete
+    before_update :admin_not_update
     has_many :daily_reports, dependent: :destroy
+
+    #日報閲覧許可
+    has_many :report_deliveries
+    has_many :delivered_reports, through: :report_deliveries, source: :daily_report
     
     validates :name,  presence: true, length: { maximum: 30 }
     validates :email, presence: true, length: { maximum: 255 },
