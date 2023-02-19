@@ -1,0 +1,22 @@
+<h2><%= @user.name %>さんのタスク一覧</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th>タスク名</th>
+      <th>内容</th>
+      <th>終了期限</th>
+      <th>登録日時</th>
+      <th>ステータス</th>
+      <th>優先順位</th>
+    </tr>
+  </thead>
+    <% @user.daily_reports.each do |daily_report| %>
+      <tr>
+        <th></th>
+        <td><%= daily_report.place %></td>
+      </tr>
+    <% end %>
+  </table>
+<%= link_to '戻る', admin_users_path %>
