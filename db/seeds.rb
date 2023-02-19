@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create!(name: '管理者',
-    email: 'admin@example.jp',
-    password: 'admin@example.jp',
-    password_confirmation: 'admin@example.jp',
-    admin: true)
+# User.create!(name: '管理者',
+#     email: 'admin@example.jp',
+#     password: 'admin@example.jp',
+#     password_confirmation: 'admin@example.jp',
+#     admin: true)
 
 # labels = [
 #     {id: 1, name: "陸上"},
@@ -25,15 +25,15 @@ User.create!(name: '管理者',
 
 
 
-# ゲストユーザーを作成する
-guest_user = User.find_or_create_by!(email: 'guest@example.com') do |user|
-  user.name = 'Guest User'
-  user.password = SecureRandom.urlsafe_base64
-end
+# # ゲストユーザーを作成する
+# guest_user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+#   user.name = 'Guest User'
+#   user.password = SecureRandom.urlsafe_base64
+# end
   
-  # ゲスト管理者を作成する
-admin_guest_user = User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
-  user.name = 'Guest Admin User'
-  user.password = SecureRandom.urlsafe_base64
-  user.admin = true
-end
+#   # ゲスト管理者を作成する
+# admin_guest_user = User.find_or_create_by!(email: 'admin_guest@example.com') do |user|
+#   user.name = 'Guest Admin User'
+#   user.password = SecureRandom.urlsafe_base64
+#   user.admin = true
+# end
