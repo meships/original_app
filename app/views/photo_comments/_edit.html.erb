@@ -1,0 +1,19 @@
+<%= form_with(model: [@daily_report, @photo, @photo_comment], local: false) do |form| %>
+    <% if photo_comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(photo_comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+        <ul>
+        <% photo_comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= form.text_area :comment, id: "photo_comment_comment_#{photo.id}" %>
+      <%= form.label :comment %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
