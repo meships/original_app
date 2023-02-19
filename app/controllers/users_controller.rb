@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user == current_user || @user == guest_user
       flash[:notice] = "権限がありません"
-      redirect_to  tasks_path
+      redirect_to  daily_reports_path
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "情報を編集しました！"
-      redirect_to tasks_path
+      redirect_to daily_reports_path
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user == current_user || @user == guest_user
       flash[:notice] = "権限がありません"
-      redirect_to  tasks_path
+      redirect_to  daily_reports_path
     end
   end
 

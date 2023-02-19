@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root "daily_reports#index"
 
   #日報
-  resources :daily_reports
+  resources :daily_reports do
+    resources :photos do
+      resources :photo_comments
+    end    
+  end
 
   #ログイン
   resources :sessions, only: [:new, :create, :destroy]
