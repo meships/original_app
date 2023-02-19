@@ -17,9 +17,42 @@ class PhotoCommentsController < ApplicationController
   end
 
   def show
+    @photo = Photo.find(params[:id])
+    @photo_comment = @photo.photo_comments.build
+    @photo_comments = @photo.photo_comments
   end
 
   def edit
+    @daily_report = DailyReport.find(params[:daily_report_id])
+    @photo = Photo.find(params[:photo_id])
+    @photo_comment = @photo.photo_comments.find(params[:id])
+    respond_to do |format|
+      flash.now[:notice] = 'コメントの編集中'
+      format.js { render :edit }
+    end
+  end
+
+  def update
+    @photo = Photo.find(params[:photo_id])
+    @photo_comment = @photo.photo_comments.find(params[:id])
+      respond_to do |format|
+        if @photo_comment.update(photo_comment_params)
+          flash.now[:notice] = 'コメントが編集されました'
+          format.js { render :index }
+        else
+          flash.now[:notice] = 'コメントの編集に失敗しました'
+          format.js { render :edit }
+        end
+      end
+  end
+
+  def destroy
+    @photo_comment = PhotoComment.find(params[:id])
+    @photo_comment.destroy
+    respond_to do |format|
+      flash.now[:notice] = 'コメントが削除されました'
+      format.js { render :index }
+    end
   end
 
   private
