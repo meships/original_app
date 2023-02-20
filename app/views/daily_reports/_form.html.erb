@@ -128,7 +128,7 @@
   }
   
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSSKQ2eh963Pus8S6M4z3wwTlL84q2WMQ&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
   
   
   <%= link_to "日報一覧画面にもどる", daily_reports_path,class: "btn btn-primary" %>
