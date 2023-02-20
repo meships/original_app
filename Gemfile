@@ -61,3 +61,8 @@ gem 'geocoder'
 gem 'gon'
 gem 'pry-rails'
 gem 'dotenv-rails'
+
+#heroku
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
