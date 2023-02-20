@@ -1,11 +1,13 @@
-<h1>Log in</h1>
+<h1>D.A.R.T</h1>
+<h2>簡単日報作成アプリ</h2>
+このアプリは日報をメモのような感覚で書きたいという思いから作成したアプリです
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-
-  <%= f.label :email %>
+  <h4>ログイン</h4>
+  <%= f.label :メールアドレス %>
   <%= f.email_field :email %>
 
-  <%= f.label :password %>
+  <p><%= f.label :パスワード %>
   <%= f.password_field :password %>
 
-  <%= f.submit "Log in" %>
+  <p><%= f.submit "ログイン" %>
 <% end %>

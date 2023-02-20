@@ -13,7 +13,7 @@
     <p>投稿内容を記入してください</p>
   
     <%= form.label :place,"現場名" %>
-    <%= form.text_field :place %>
+    <%= form.text_field :place, :placeholder => "自分で分かる名前にしてください" %>
   
     <br>
     <%= form.label :date,"日付" %>
@@ -21,29 +21,31 @@
   
     <br>
     <%= form.label :place,"住所" %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, :placeholder => "大体で大丈夫です" %>
   
   
     <br>
-    <%= form.label :label_name,"ラベル名" %>
+    <%= form.label :label_name,"作業場所" %>
     <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
     
     <br>
     <%= form.label :action_content,"作業内容" %>
-    <%= form.text_area :action_content %>
+    <%= form.text_area :action_content, :placeholder => "箇条書きでもいいです" %>
   
     <br>
     <%= form.label :tool,"使用工具" %>
-    <%= form.text_area :tool %>
+    <%= form.text_area :tool, :placeholder => "自分で作った道具があればそれもお願いします" %>
     
     <br>
     <%= form.submit "日報登録" %>
     
     <!-- ここから地図検索機能 -->
     <div class="input-field">
-      <input type="text" id="address" placeholder="地名、施設名などを入力するか、地図をクリックしてマーカーを立ててください">
       <label>場所</label>
-      <a class="btn" onclick="codeAddress()">地図検索</a>
+      <input type="text" id="address" placeholder="地名、施設名などを入力するか、地図をクリックしてマーカーを立ててください">
+      
+      <input type="button" value="地図検索" onclick="codeAddress()">
+      <!-- <a class="btn" onclick="codeAddress()">地図検索</a> -->
       <a id="del" class="btn marker-delete right" onclick="deleteMarker()">
       <i class="fas fa-map-marker-alt fas-2x" style="color:red"></i>削除
       </a>
@@ -128,7 +130,7 @@
   }
   
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSSKQ2eh963Pus8S6M4z3wwTlL84q2WMQ&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
   
   
   <%= link_to "日報一覧画面にもどる", daily_reports_path,class: "btn btn-primary" %>

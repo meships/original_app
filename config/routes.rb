@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'homes/top'
   root "daily_reports#index"
 
   #日報 写真 コメント
