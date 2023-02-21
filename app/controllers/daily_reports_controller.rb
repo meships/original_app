@@ -77,5 +77,6 @@ class DailyReportsController < ApplicationController
   #current_user以外はログイン画面に戻す
   def login_required
     redirect_to new_session_path unless current_user
+    #redirect_to homes_top_path unless current_user
   end
 end

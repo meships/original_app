@@ -26,7 +26,7 @@ class Admin::UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user.update(user_params)
             flash[:notice] = "情報を編集しました！"
-            redirect_to tasks_path
+            redirect_to daily_reports_path
         else
             render :edit
         end
@@ -52,7 +52,8 @@ class Admin::UsersController < ApplicationController
     def admin_user
       unless logged_in? && current_user.admin?
           flash[:notice] = "管理者以外はアクセス不可"
-          redirect_to new_session_path
+          #redirect_to new_session_path
+          redirect_to homes_top_path
       end
     end
 end

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   get 'homes/top'
-  root "daily_reports#index"
+  #resources :homes
+  #root "daily_reports#index"
+  root 'homes#top'
 
   #日報 写真 コメント
   resources :daily_reports do

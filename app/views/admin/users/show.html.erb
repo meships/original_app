@@ -3,19 +3,28 @@
 <table class="table">
   <thead>
     <tr>
-
-      <th>タスク名</th>
-      <th>内容</th>
-      <th>終了期限</th>
-      <th>登録日時</th>
-      <th>ステータス</th>
-      <th>優先順位</th>
+      <th></th>
+      <th>現場名</th>
+      <th>日付</th>
+      <th>住所</th>
+      <th>作業内容</th>
+      <th>使用工具</th>
+      <th>作業場所</th>
     </tr>
   </thead>
     <% @user.daily_reports.each do |daily_report| %>
       <tr>
         <th></th>
         <td><%= daily_report.place %></td>
+        <td><%= daily_report.date %></td>
+        <td><%= daily_report.address %></td>
+        <td><%= daily_report.action_content %></td>
+        <td><%= daily_report.tool %></td>
+        <td>
+          <% daily_report.labels.each do |label| %>
+            <%= label.name %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>

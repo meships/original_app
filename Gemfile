@@ -64,19 +64,23 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bcrypt'
 
+# グーグルマップ
 gem 'geocoder'
 gem 'gon'
+
+
 gem 'pry-rails'
 gem 'dotenv-rails'
 
-#heroku
+# heroku
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 
-
+# 画像
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
 
-gem 'unicorn' # アプリケーションサーバのunicorn
+# アプリケーションサーバのunicorn
+gem 'unicorn'
