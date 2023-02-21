@@ -3,6 +3,7 @@ ja:
     models:
       blog: ブログ
       user: ユーザー
+      daily_report: 日報
     attributes:
       blog:
         title: タイトル
@@ -15,3 +16,7 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+      daily_report:
+        place: 現場名
+        address: 住所
+        action_content: 作業内容

@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_many :report_deliveries
     has_many :delivered_reports, through: :report_deliveries, source: :daily_report
     
+    #バリデーション
     validates :name,  presence: true, length: { maximum: 30 }
     validates :email, presence: true, length: { maximum: 255 },
                       format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
