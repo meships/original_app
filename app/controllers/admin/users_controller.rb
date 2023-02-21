@@ -52,7 +52,8 @@ class Admin::UsersController < ApplicationController
     def admin_user
       unless logged_in? && current_user.admin?
           flash[:notice] = "管理者以外はアクセス不可"
-          redirect_to new_session_path
+          #redirect_to new_session_path
+          redirect_to homes_top_path
       end
     end
 end

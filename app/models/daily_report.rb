@@ -13,4 +13,5 @@ class DailyReport < ApplicationRecord
     validates :place,  presence: true
     validates :address,  presence: true
     validates :action_content,  presence: true
+
 end
