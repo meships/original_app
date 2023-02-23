@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Laboratory</title>
+    <title>D.A.R.T</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= favicon_link_tag("favicon.ico") %>
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
+    <header class="p-3 bg-light text-dark">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+            <%= image_tag ("D.A.R.T01.png"), class: 'rounded mx-auto d-block', size: "150x150"%>
+          </a>
+          <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: "#{key}") %>
+          <% end %>
 
-    <% if logged_in? %>
-      <%= link_to "プロフィール", user_path(current_user.id) %>
-      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+          <% if logged_in? %>
+            <%#= link_to "プロフィール", user_path(current_user.id),class: 'btn btn-outline-secondary' %>
+            <%= link_to "ログアウト", session_path(current_user.id), method: :delete,class: 'btn btn-outline-secondary' %>
+            <%= link_to "管理者画面",admin_users_path,class:"login, btn btn-outline-secondary" if admin? %>
 
-
-      <%= link_to "管理者画面",admin_users_path,class:"login" if admin? %>
-    <% else %>
-      <%= link_to "利用者を新規作成", new_user_path %>
-      <%= link_to "ログイン", new_session_path %>
-
-
-      <%= link_to 'ゲストログイン', login_guest_login_path(guest_login: true), method: :post %>
-      <%= link_to "管理者ゲストログイン", admin_guest_login_path, method: :post %>
-    <% end %>
-
+            <%= link_to "日報一覧画面にもどる", daily_reports_path,class: 'btn btn-outline-secondary' %>
+            <%= link_to "新しい日報を作る", new_daily_report_path,class: 'btn btn-outline-secondary' %>
+          <% else %>
+            <%= link_to "新規利用者", new_user_path,class: 'btn btn-outline-secondary' %>
+            <%= link_to "ログイン", new_session_path,class: 'btn btn-outline-secondary' %>
+            <%= link_to 'ゲストログイン', login_guest_login_path(guest_login: true), method: :post,class: 'btn btn-outline-secondary' %>
+            <%= link_to "管理者ゲストログイン", admin_guest_login_path, method: :post,class: 'btn btn-outline-secondary' %>
+          <% end %>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    
+
+    <footer class="fixed-bottom footer mt-auto py-3 bg-light  text-center" >
+    <div class="container">
+      <span class="fixed-bottom text-muted"><%= image_tag ("うんち.jpg"), size: "30x30" %>D.A.R.T 2022</span>
+    </div>
+  </footer>
   </body>
 
 </html>

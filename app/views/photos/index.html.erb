@@ -1,31 +1,42 @@
+<body>
 <p id="notice"><%= notice %></p>
+<div class="container py-3">
+  <div class="row">
+    <div class="col">
+        
 
-<h1>写真</h1>
+        <h1>写真一覧</h1>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Images</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Images</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                  <tbody>
+                  <% if @photos %>
+                    <% @photos.each do |photo| %>
+                      <tr>
+                        <td><%= photo.title %></td>
+                        <td><%= photo.images.attached? ? 1 : 0 %></td>
+                        <td><% photo.images.each do |image| %></td>                
+                          <td><a href="<%= url_for(image) %>"></td>
+                            <td><%= image_tag image.variant(resize: "5%") %><td>
+                          </a> 
+                        <td><% end %></td>
+                        <td><%= link_to '写真を見る', daily_report_photo_path(@daily_report,photo.id),class: 'btn btn-outline-secondary' %></td>
+                        <td><%= link_to '削除', daily_report_photo_path(@daily_report,photo.id) ,method: :delete,data: { confirm: "本当に削除してもいいですか？"},class: "btn btn-outline-danger btn" %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                  </tbody>
+                </table>
+        <br>
 
-  <tbody>
-  <% if @photos %>
-    <% @photos.each do |photo| %>
-      <tr>
-        <td><%= photo.title %></td>
-        <td><%= photo.images.attached? ? 1 : 0 %></td>
-        <td><%= link_to 'Show', daily_report_photo_path(@daily_report,photo.id) %></td>
-        <td><%= link_to '削除', daily_report_photo_path(@daily_report,photo.id) ,method: :delete,data: { confirm: "本当に削除してもいいですか？"} %></td>
-      </tr>
-    <% end %>
-  <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to '写真を付け加える', new_daily_report_photo_path %>
-<%= link_to '日報に戻る', daily_report_path(@daily_report,@photo) %>
+        <%= link_to '写真を付け加える', new_daily_report_photo_path,class: 'btn btn-outline-secondary' %>
+        <%= link_to '日報に戻る', daily_report_path(@daily_report,@photo),class: 'btn btn-outline-secondary' %>
+    </div>
+  </div>
+</div>

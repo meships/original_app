@@ -17,6 +17,8 @@ labels = [
     {id: 1, name: "陸上"},
     {id: 2, name: "水上"},
     {id: 3, name: "水中"},
+    {id: 4, name: "暗渠"},
+    {id: 5, name: "地下"},
 
 ]
 labels.each do |label|
@@ -103,7 +105,7 @@ end
 
     # 日報にラベルを割り当てる
     Labelling.create!(
-      label_id: (m % 3) + 1, # 1-3の間でランダムにラベルを選択する
+      label_id: (m % 5) + 1, # 1-5の間でランダムにラベルを選択する
       daily_report_id: daily_report.id
     )
   end

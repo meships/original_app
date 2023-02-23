@@ -1,58 +1,69 @@
-<h1>日報詳細画面</h1>
-<p>現場名: <%= @daily_report.place %></p>
-<p>日付: <%= @daily_report.date %></p>
-<p>住所: <%= @daily_report.address %></p>
-<% @daily_report.labels.each do |label| %>
-    <p>ラベル: <%= label.name %></p>
-<% end %>
-<p>作業内容: <%= @daily_report.action_content %></p>
-<p>使用工具: <%= @daily_report.tool %></p>
-<%= link_to "日報一覧に戻る",daily_reports_path %>
-<p><%= link_to "編集", edit_daily_report_path(@daily_report.id) %></p>
+<body>
+<div class="container py-3">
+  <div class="row">
+    <div class="col">
+      <h1>日報詳細画面</h1>
+      <p>現場名: <%= @daily_report.place %></p>
+      <p>日付: <%= @daily_report.date %></p>
+      <p>住所: <%= @daily_report.address %></p>
+      <% @daily_report.labels.each do |label| %>
+          <p>ラベル: <%= label.name %></p>
+      <% end %>
+      <p>作業内容: <%= @daily_report.action_content %></p>
+      <p>使用工具: <%= @daily_report.tool %></p>
+      <p><%= link_to "編集", edit_daily_report_path(@daily_report.id), class: 'btn btn-outline-secondary' %></p>
 
 
-<!-- 日報閲覧許可 -->
-<%= form_with(model: [@daily_report, @report_delivery], local: true) do |form| %>
-  <div class="form-group">
-    <%= form.select :user_id, User.all.collect {|user| [user.name, user.id]}, {}, class: 'form-control', prompt: 'ユーザーを選択してください' %>
-  </div>
-  <%= form.submit 'この日報を渡す', class: 'btn btn-primary' %>
-<% end %>
+      <!-- 日報閲覧許可 -->
+      <%= form_with(model: [@daily_report, @report_delivery], local: true) do |form| %>
+        <div class="form-group">
+          <h5>もし日報を渡したい人がいれば下から選んでください</h3>
+          <%= form.select :user_id, User.all.collect {|user| [user.name, user.id]}, {}, class: 'form-control', prompt: 'ユーザーを選択してください' %>
+        </div>
+        <%= form.submit '渡す人が決まったので日報を渡す', class: 'btn btn-outline-secondary' %>
+      <% end %>
 
+      <p>
+      <br>
+      <%= link_to '写真を付け加える', daily_report_photos_path(@daily_report, @photos), class: 'btn btn-outline-secondary' %>
 
+    </div>
 
-<!-- ここから地図関係 -->
-<h3>マップ</h3>
+    <div class="col">
+      <!-- ここから地図関係 -->
+      <h3>地図</h3>
 
-<div id="map"></div>
-<!-- ↑これが無いとマップが表示されない -->
+      <div id="map"></div>
+      <!-- ↑これが無いとマップが表示されない -->
 
-<style>
-#map {
-height: 600px;
-width: 600px;
-}
-</style>
+      <style>
+      #map {
+      height: 600px;
+      width: 600px;
+      }
+      </style>
 
-<!-- js部分 -->
-<script>
+      <!-- js部分 -->
+      <script>
 
-  function initMap(){
-    const myPlace = { lat: <%= @daily_report.latitude %>, lng: <%= @daily_report.longitude %> }
-    let map = new google.maps.Map(document.getElementById('map'), {
-      center: myPlace,
-      zoom: 8
-    });
+        function initMap(){
+          const myPlace = { lat: <%= @daily_report.latitude %>, lng: <%= @daily_report.longitude %> }
+          let map = new google.maps.Map(document.getElementById('map'), {
+            center: myPlace,
+            zoom: 8
+          });
 
-    new google.maps.Marker({
-      position: myPlace,
-      map
-    });
-  }
+          new google.maps.Marker({
+            position: myPlace,
+            map
+          });
+        }
 
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-<!-- ここまで -->
-<%= link_to  "新規写真", new_daily_report_photo_path(@daily_report.id) %>
-<%= link_to 'Photos', daily_report_photos_path(@daily_report, @photos) %>
-<%#= link_to 'Photo', daily_report_photo_path(@daily_report, @photo) %>
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+      <!-- ここまで -->
+
+    </div>
+  </div>  
+</div>
+</body>
