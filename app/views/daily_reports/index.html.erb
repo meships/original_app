@@ -1,5 +1,4 @@
 <h1>日報一覧</h1>
-<%= link_to "新しい日報を作る", new_daily_report_path %>
 
 <table class="table">
     <tr>
@@ -8,6 +7,7 @@
       <th>住所</th>
       <th>作業場所</th>
       <th>操作</th>
+      <th></th>
     </tr>
 
   <% @daily_reports.each do |daily_report| %>
@@ -22,8 +22,8 @@
       </td>
 
 
-      <td><%= link_to "日報を見る", daily_report_path(daily_report.id) %></td>
-      <td><%= link_to "削除", daily_report_path(daily_report.id),method: :delete,data: { confirm: "本当に削除してもいいですか？"} %></td>
+      <td><%= link_to "日報を見る", daily_report_path(daily_report.id),class: 'btn btn-outline-secondary' %></td>
+      <td><%= link_to "削除", daily_report_path(daily_report.id),method: :delete,data: { confirm: "本当に削除してもいいですか？"},class: "btn btn-outline-danger btn-sm" %></td>
 
     </tr>
     
@@ -40,7 +40,7 @@
           <%= label.name %>
         <% end %>
       </td>
-      <td><%= link_to "日報を見る", daily_report_path(daily_report.id) %></td>
+      <td><%= link_to "日報を見る", daily_report_path(daily_report.id), class: 'btn btn-outline-secondary' %></td>
       <td></td>
     </tr>
   <% end %>

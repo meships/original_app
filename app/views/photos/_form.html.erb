@@ -29,7 +29,7 @@
         <div style="display: flex; margin:5px 5px 5px 0;">
             <%= form.check_box :image_ids, { multiple: true }, image.id, false %>
             <label for="photo_image_ids_<%= image.id %>" > 
-            <%= image_tag image, size: '300x200' %>
+            <%= image_tag image, size: '300x300' %>
             </label>
         </div>
         <% end %>

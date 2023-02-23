@@ -1,5 +1,5 @@
 <p>
-  <strong>Name:</strong>
+  <h3><strong>Title:</strong></h3>
   <%= @photo.title %>
 </p>
 
@@ -8,10 +8,12 @@
   <p><strong>Image:</strong></p>
   <% @photo.images.each do |image| %>
     <a href="<%= url_for(image) %>">
-      <%= image_tag image, size: '300x200' %>
+      <%= image_tag image, size: '600x600' %>
     </a> 
   <% end %>
 </div>
+<%= link_to '写真を編集', edit_daily_report_photo_path(@photo),class: 'btn btn-outline-secondary' %>
+<%= link_to '写真一覧に戻る', daily_report_photos_path,class: 'btn btn-outline-secondary' %>
 <% end %>
 
 
@@ -33,5 +35,5 @@
 
 <%= render partial: 'photo_comments/form', locals: { daily_report: @daily_report, photo_comment: @photo_comment, photo: @photo } %>
 
-<%= link_to '編集', edit_daily_report_photo_path(@photo) %> |
+<%= link_to '編集', edit_daily_report_photo_path(@photo) %>
 <%= link_to '戻る', daily_report_photos_path %>

@@ -84,3 +84,5 @@ gem 'fog-aws'
 
 # アプリケーションサーバのunicorn
 gem 'unicorn'
+
+gem 'bootstrap', '~> 4.1.1'
