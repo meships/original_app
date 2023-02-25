@@ -15,7 +15,7 @@ RSpec.describe '日報機能', type: :system do
         login
         visit new_daily_report_path
         fill_in 'daily_report[place]', with: 'task'
-        #fill_in 'daili_report[date]', with: "002022-12-31"
+        fill_in 'daily_report[date]', with: "002022-12-31"
         fill_in 'daily_report[address]', with: 'task'
         fill_in 'daily_report[action_content]', with: 'task'
         fill_in 'daily_report[tool]', with: 'task'
@@ -82,7 +82,7 @@ RSpec.describe '日報機能', type: :system do
         login
         visit new_daily_report_path
         fill_in 'daily_report[place]', with: 'task'
-        #fill_in 'daili_report[date]', with: date
+        fill_in 'daily_report[date]', with: date
         fill_in 'daily_report[address]', with: 'task'
         fill_in 'daily_report[action_content]', with: 'task'
         fill_in 'daily_report[tool]', with: 'task'
