@@ -19,6 +19,8 @@ class PhotosController < ApplicationController
     if @photo.save
       # redirect_to daily_report_photo_path(@daily_report,@photo)
       redirect_to daily_report_photos_path
+    else
+      render :new
     end
   end
   
