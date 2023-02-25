@@ -68,5 +68,33 @@ RSpec.describe "Ajaxコメント機能", type: :model do
         expect(photo_comment).not_to be_valid
       end
     end
+    context 'コメント欄が記載されている場合' do
+      it 'バリデーションが通る' do
+        user = User.create(name: 'user1', email: 'user1@seed.com', password: 'password')
+        daily_report = DailyReport.create(place: '成功テスト4', date: Date.today, address: '成功テスト4', action_content: '成功テスト4', user_id: user.id)
+        photo = Photo.create(daily_report_id: daily_report.id, title: 'バイバイ')
+        photo_comment = PhotoComment.new(photo_id: photo.id, comment: "どうですか")
+        expect(photo_comment).to be_valid
+      end
+    end
+  end
+end
+
+RSpec.describe "写真タイトル", type: :model do
+  describe 'バリデーションのテスト' do
+    context 'タイトルが空の場合' do
+      it 'バリデーションにひっかる' do
+        photo = Photo.new(title: '')
+        expect(photo).not_to be_valid
+      end
+    end
+    context 'タイトルが記載されている場合' do
+      it 'バリデーションが通る' do
+        user = User.create(name: 'user1', email: 'user1@seed.com', password: 'password')
+        daily_report = DailyReport.create(place: '成功テスト4', date: Date.today, address: '成功テスト4', action_content: '成功テスト4', user_id: user.id)
+        photo = Photo.new(daily_report_id: daily_report.id,title: 'バイバイ')
+        expect(photo).to be_valid
+      end
+    end
   end
 end
