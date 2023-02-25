@@ -58,3 +58,15 @@ RSpec.describe "日報モデル機能", type: :model do
     end
   end
 end
+
+
+RSpec.describe "Ajaxコメント機能", type: :model do
+  describe 'バリデーションのテスト' do
+    context 'コメント欄が空の場合' do
+      it 'バリデーションにひっかる' do
+        photo_comment = PhotoComment.new(comment: '')
+        expect(photo_comment).not_to be_valid
+      end
+    end
+  end
+end
