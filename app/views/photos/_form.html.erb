@@ -1,24 +1,23 @@
 <%= form_with(model: [@daily_report, @photo]) do |form| %>
-    <% if @photo.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this user from being saved:</h2>
-  
-        <ul>
-          <% photo.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <% if @photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @photo.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @photo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   
     <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title %>
+      <%= form.label :"タイトル" %>
+      <%= form.text_field :title, :placeholder => "例)何々の写真" %>
     </div>
   
 
     <div class="field">
-      <%= form.label :images %>
+      <%= form.label :写真を選んでください %>
       <%= form.file_field :images, multiple: true %>
     </div>
 
@@ -37,6 +36,7 @@
     <% end %>
   
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit"登録する", class: 'btn btn-outline-secondary' %>
+      <%= link_to '写真一覧に戻る', daily_report_photos_path,class: 'btn btn-outline-secondary' %>
     </div>
 <% end %>

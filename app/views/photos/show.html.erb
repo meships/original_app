@@ -1,11 +1,11 @@
 <p>
-  <h3><strong>Title:</strong></h3>
+  <h3><strong>タイトル</strong></h3>
   <%= @photo.title %>
 </p>
 
 <% if @photo.images.attached? %>
 <div style="width: 700px;">
-  <p><strong>Image:</strong></p>
+  <p><strong>登録した写真</strong></p>
   <% @photo.images.each do |image| %>
     <a href="<%= url_for(image) %>">
       <%= image_tag image, size: '600x600' %>
@@ -21,10 +21,10 @@
 
 
 
-
-
 <p>コメント一覧</p>
 
+
+<h3><id="notice"><%= notice %></h3>
 <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
 <div id="photo_comments_area">
   <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->

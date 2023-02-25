@@ -9,8 +9,8 @@
 # 就職Termの技術
 
 * AWS EC2
-* AWS S3
 * Ajaxを使ったコメント機能
+
 
 
 
@@ -19,6 +19,7 @@
 # カリキュラム外の技術
 * Active Storage
 * geocoder
+* googlemap
 
 <br>
 
