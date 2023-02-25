@@ -2,6 +2,7 @@ class PhotoCommentsController < ApplicationController
   before_action :login_required
   # コメントを保存、投稿するためのアクションです。
   def create
+    @daily_report = DailyReport.find(params[:daily_report_id])
     # Photoをパラメータの値から探し出し,Photoに紐づくphoto_commentsとしてbuildします。
     @photo = Photo.find(params[:photo_id])
     @photo_comment = @photo.photo_comments.build(photo_comment_params)
@@ -11,7 +12,10 @@ class PhotoCommentsController < ApplicationController
         format.js { render :index }
         #format.html { redirect_to blog_path(@photo) }
       else
-        format.html { redirect_to blog_path(@photo), notice: '投稿できませんでした...' }
+        #format.js { render :index }
+        #flash[:notice] = 'コメント欄が空白です↓'
+        format.html { redirect_to daily_report_photo_path(@daily_report, @photo), notice: 'コメント欄が空白です' }
+        flash[:notice]
       end
     end
   end

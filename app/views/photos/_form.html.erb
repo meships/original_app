@@ -12,13 +12,13 @@
     <% end %>
   
     <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title %>
+      <%= form.label :"タイトル" %>
+      <%= form.text_field :title, :placeholder => "例)何々の写真" %>
     </div>
   
 
     <div class="field">
-      <%= form.label :images %>
+      <%= form.label :写真を選んでください %>
       <%= form.file_field :images, multiple: true %>
     </div>
 
