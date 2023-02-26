@@ -1,5 +1,6 @@
 class DailyReportsController < ApplicationController
   before_action :login_required
+  before_action :check_author, only: [:edit, :update]
   def index
     @daily_reports = current_user.daily_reports
      # 渡された日報を取得し、@daily_reportsに追加する
@@ -57,6 +58,14 @@ class DailyReportsController < ApplicationController
     if @daily_report.destroy
       flash[:notice] = "日報を削除しました"
       redirect_to daily_reports_path
+    end
+  end
+
+  def check_author
+    @daily_report = DailyReport.find(params[:id])
+    if @daily_report.user != current_user
+      flash[:danger] = "他のユーザーの日報は編集できません"
+      redirect_to daily_report_path(@daily_report)
     end
   end
 
