@@ -15,6 +15,14 @@ class User < ApplicationRecord
     has_secure_password     
     validates :password, length: { minimum: 6 }  
 
+    def guest?
+        name == 'Guest User' && email == 'guest@example.com'
+    end
+    
+    def admin_guest?
+        guest? && admin
+    end
+
     private
 
     def admin_not_delete
@@ -32,4 +40,5 @@ class User < ApplicationRecord
           user.admin = true
         end
     end
+
 end

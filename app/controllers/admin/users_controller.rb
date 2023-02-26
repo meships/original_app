@@ -36,12 +36,24 @@ class Admin::UsersController < ApplicationController
         @user = User.find(params[:id])
     end
 
+    # def destroy
+    #     @user = User.find(params[:id])
+    #     @user.destroy
+    #     flash[:notice] = "ユーザーを削除しました"
+    #     redirect_to admin_users_path
+    # end
+
     def destroy
         @user = User.find(params[:id])
-        @user.destroy
-        flash[:notice] = "ユーザーを削除しました"
-        redirect_to admin_users_path
-    end
+        if @user.guest? || @user.admin_guest?
+          flash[:error] = "ゲストユーザーまたは管理者ゲストは削除できません"
+          redirect_to admin_users_path
+        else
+          @user.destroy
+          flash[:success] = "ユーザーを削除しました"
+          redirect_to admin_users_path
+        end
+      end
 
     private
 
