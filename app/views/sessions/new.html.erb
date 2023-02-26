@@ -4,10 +4,10 @@
       <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
         <h4>ログイン</h4>
         <%= f.label :メールアドレス %>
-        <%= f.email_field :email %>
+        <%= f.email_field :email, :placeholder => "登録したメールアドレス" %>
 
         <p><%= f.label :パスワード %>
-        <%= f.password_field :password %>
+        <%= f.password_field :password, :placeholder => "登録したパスワード" %>
 
         <p><%= f.submit "ログイン" %>
       <% end %>
