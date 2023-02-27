@@ -26,6 +26,69 @@ RSpec.describe "ユーザーモデル機能", type: :model do
         expect(user).to be_valid
       end
     end
+
+    context 'nameが30文字以内の場合' do
+      it '有効であること' do
+        user = FactoryBot.build(:user, name: 'a' * 30)
+        expect(user).to be_valid
+      end
+    end
+  
+    context 'nameが31文字以上の場合' do
+      it '無効であること' do
+        user = FactoryBot.build(:user, name: 'a' * 31)
+        expect(user).not_to be_valid
+      end
+    end
+
+    context 'バリデーションのテスト' do
+      it 'emailが255文字以内の場合は有効であること' do
+        user = User.new(
+          name: 'test',
+          email: 'a' * 243 + '@example.com',
+          password: 'password',
+          password_confirmation: 'password'
+        )
+        expect(user).to be_valid
+      end
+    end
+
+    context 'バリデーションのテスト' do
+      it 'emailが256文字以上の場合は無効であること' do
+        user = User.new(
+          name: 'test',
+          email: 'a' * 244 + '@example.com',
+          password: 'password',
+          password_confirmation: 'password'
+        )
+        expect(user).not_to be_valid
+      end
+    end
+
+    context 'passwordが6文字以上の場合' do
+      it '有効であること' do
+        user = User.new(
+          name: 'test',
+          email: 'a' * 243 + '@example.com',
+          password: 'password',
+          password_confirmation: 'password'
+        )
+        expect(user).to be_valid
+      end
+    end
+
+    context 'passwordが5文字以下の場合' do
+      it '無効であること' do
+        user = User.new(
+          name: 'test',
+          email: 'a' * 243 + '@example.com',
+          password: 'passw',
+          password_confirmation: 'passw'
+        )
+        expect(user).not_to be_valid
+      end
+    end
+
   end
 end
 

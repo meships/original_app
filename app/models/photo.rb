@@ -4,5 +4,5 @@ class Photo < ApplicationRecord
   has_many_attached :images
   has_many :photo_comments, dependent: :destroy
 
-  validates :title,  presence: true
+  validates :title,  presence: true, length: { maximum: 30 }
 end
