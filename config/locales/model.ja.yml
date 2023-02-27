@@ -20,5 +20,8 @@ ja:
         place: 現場名
         address: 住所
         action_content: 作業内容
+        tool: 使用工具
       photo:
         title: タイトル  
+      photo_comment:
+        comment: コメント
