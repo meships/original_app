@@ -119,6 +119,23 @@ RSpec.describe "日報モデル機能", type: :model do
         expect(daily_report).to be_valid
       end
     end
+
+    context 'placeが30文字以内の場合' do
+      it 'バリデーションが通る' do
+        user = User.create(name: 'user1', email: 'user1@seed.com', password: 'password')
+        daily_report = DailyReport.create(place: 'a' * 30, date: Date.today, address: '成功テスト4', action_content: '成功テスト4', tool: '成功テスト4', user_id: user.id)
+        expect(daily_report).to be_valid
+      end
+    end
+
+    context 'placeが31文字以内の場合' do
+      it 'バリデーションに引っかかる' do
+        user = User.create(name: 'user1', email: 'user1@seed.com', password: 'password')
+        daily_report = DailyReport.create(place: 'a' * 31, date: Date.today, address: '成功テスト4', action_content: '成功テスト4', tool: '成功テスト4', user_id: user.id)
+        expect(daily_report).not_to be_valid
+      end
+    end
+
   end
 end
 
